@@ -22,33 +22,37 @@ class Words {
 //: ### variables the same type? If not, why?
 
 
-//: [EXPLAIN YOUR ANSWER HERE]
+//: [These variables are not the same type, since the question mark makes sure that the type of wordA and wordB cannot be nil, but the exclamation mark does not ensure that.]
+    
+    
 
 
 //: ## Q2: Variable Types and Function Types
-    func arePalindromes(_ words: [String]) -> Bool {
-        let reversedWords = words.map() {String($0.characters.reversed())}
+    static func arePalindromes(words: [String]) -> Bool {
+        let reversedWords = words.map()
+            {String($0.characters.reverse())}
         let numElements = words.count
         
-        for i in 0 ..< numElements {
+        for i in 0..<numElements {
             if words[i] != reversedWords[i] {
                 return false
             }
         }
+        return true
     }
 //: ### Why does the compiler dislike the **for loop**? Fix it.
 //: ### What else is wrong with this function? You may have to refer to (but **not**
 //: ### change) the code at the very bottom. Debug the function.
 
 
-//: [EXPLAIN YOUR ANSWER HERE]
+//: [This function must be of a static type since it is called by the class itself. Additionally, "characters.reversed()" is not a valid function; rather, it is "characters.reverse()"]
 
 
 //: ## Q3: More Functions and Object Initialization
-    class func isAnagram() -> Bool {
-        var countLetters : [Character : Int] //Line X
-        var lenA = self.wordA.characters.count
-        var lenB = self.wordB.characters.count
+    func isAnagram() -> Bool {
+        var countLetters : [Character : Int] = [Character : Int]() //Line X
+        let lenA = self.wordA.characters.count
+        let lenB = self.wordB.characters.count
         
         if lenA != lenB {
             return false
@@ -75,13 +79,13 @@ class Words {
             }
         }
         
-        for (letter, count) in countLetters {
+        for (_, count) in countLetters {
             if count != 0 {
                 return false
             }
         }
         
-        return nil
+        return true
     }
 //: ### What is the problem with declaring **countLetters** as we do in **Line X**,
 //: ### and then using it in **Line Y**? Fix it (by only changing **Line X**).
@@ -89,7 +93,7 @@ class Words {
 //: ### change) the code at the very bottom. Debug the function.
 
 
-//: [EXPLAIN YOUR ANSWER HERE]
+//: [The problem with declaring countLetters as done in Line X is that it is declared, but not instantiated. I've added the necessary code to instantiate the dictionary. Also, this function should not be a class function, but rather just an instance method. Also, the "var" in "var lenA = self.wordA.characters.count" should be changed to "let," and same with the line below.]
     
     
 }
